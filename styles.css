@@ -60,7 +60,7 @@ img {
   display: block;
   max-width: 80%;
   margin: 20px auto;
-  border: 5px solid #ccc; /* Adds a light border */
+  border: 5px solid #000000; /* Adds a light border */
   border-radius: 10px; /* Rounds the image corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
 }
