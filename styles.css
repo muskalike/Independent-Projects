@@ -1,14 +1,78 @@
+/* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9; /* Light grey background for the page */
+  color: #333; /* Dark text for readability */
+}
+
+/* Header Styles */
+h1 {
+  text-align: center;
+  color: #4CAF50; /* Green heading */
+  font-size: 3rem;
+  margin-top: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Adds slight shadow */
+}
+
+h2 {
+  text-align: center;
+  color: #555; /* Slightly lighter grey for secondary heading */
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+/* Paragraph Styles */
+p {
+  line-height: 1.6; /* Improves readability with proper line spacing */
+  margin: 20px auto;
+  width: 80%; /* Restricts paragraph width for better readability */
+  font-size: 1rem;
+}
+
+/* Strong Text */
+strong {
+  font-size: 1.2rem;
+  color: #ff5722; /* Adds an orange accent color */
+}
+
+/* Link Styles */
 a {
   display: inline-block;
   text-decoration: none;
-  padding: 10px 20px;
-  background-color: #ff0000;
+  background-color: #2196F3; /* Blue background */
   color: white;
+  padding: 10px 20px;
   border-radius: 5px;
   font-weight: bold;
+  text-align: center;
+  margin: 20px auto;
   transition: background-color 0.3s ease;
 }
-<link rel="stylesheet" href="css/styles.css">
+
 a:hover {
-  background-color: #cc0000;
+  background-color: #1769aa; /* Darker blue on hover */
+}
+
+/* Image Styles */
+img {
+  display: block;
+  max-width: 80%;
+  margin: 20px auto;
+  border: 5px solid #ccc; /* Adds a light border */
+  border-radius: 10px; /* Rounds the image corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+/* Additional Styling */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Adds a gradient banner at the top */
+  z-index: -1;
 }
