@@ -25,10 +25,11 @@ h2 {
 
 /* Paragraph Styles */
 p {
+  text-align: center;
   line-height: 1.6; /* Improves readability with proper line spacing */
   margin: 20px auto;
   width: 80%; /* Restricts paragraph width for better readability */
-  font-size: 1rem;
+  font-size: 3rem;
 }
 
 /* Strong Text */
