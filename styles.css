@@ -38,6 +38,14 @@ strong {
   color: #ff5722; /* Adds an orange accent color */
 }
 
+/* Centering Container */
+.button-container {
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  height: 100vh; /* Full viewport height */
+}
+
 /* Link Styles */
 a {
   display: inline-block;
