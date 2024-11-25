@@ -36,7 +36,7 @@ nav {
   color: white; /* Button text color */
   padding: 10px 20px; /* Adds padding to the buttons */
   display: inline-block;
-  background-color: #333; /* Button background color */
+  background-color: #444; /* Button background color */
   border-radius: 5px; /* Optional: Rounded corners */
   transition: background-color 0.3s ease; /* Smooth hover effect */
 }
@@ -44,12 +44,6 @@ nav {
 .navbar a:hover {
   background-color: #555; /* Changes background color on hover */
   color: #ddd; /* Optional: Lightens text color on hover */
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 
 /* Header Styles */
