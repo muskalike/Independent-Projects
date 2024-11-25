@@ -7,6 +7,36 @@ body {
   color: #333; /* Dark text for readability */
 }
 
+/* Navbar styling */
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  overflow: hidden;
+  display: flex;
+  justify-content: center; /* Centers the navbar */
+}
+
+.navbar li {
+  margin: 0 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px;
+  display: inline-block;
+  background-color: #333; /* Match navbar background */
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: #555; /* Changes on hover */
+  color: #ddd;
+}
+
 /* Header Styles */
 h1 {
   text-align: center;
