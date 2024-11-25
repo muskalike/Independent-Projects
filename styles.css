@@ -77,28 +77,24 @@ strong {
   color: #ff5722; /* Adds an orange accent color */
 }
 
-/* Centering the YouTube button */
-.youtube-button-container {
+.button-container {
   display: flex;
   justify-content: center; /* Centers the button horizontally */
-  position: fixed;
-  top: 10px; /* Adjust the top position as needed */
-  width: 100%; /* Full width to align it at the top */
-  z-index: 1001; /* Ensure it stays above the navbar */
+  margin: 20px 0; /* Adds vertical spacing */
 }
 
-.youtube-button-container a {
-  background-color: #cb1b1b; /* Button background color */
+.button-container a {
+  text-decoration: none;
+  background-color: #cb1b1b; /* Red background */
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   font-weight: bold;
   text-align: center;
-  text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
-.youtube-button-container a:hover {
+.button-container a:hover {
   background-color: #1769aa; /* Darker blue on hover */
 }
 
