@@ -7,15 +7,17 @@
   <title>Projects</title>
 </head>
 <body>
-  <nav>
-    <ul class="navbar">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="tutorials.html">Tutorials</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- Empty div where navbar will be inserted -->
+  <div id="navbar"></div>
+
   <h1>Projects</h1>
-  <p>Welcome to the Projects page! Showcase your STEM projects here.</p>
+  <p>Explore my STEM projects here!</p>
+
+  <script>
+    // Fetch navbar.html and insert it into the div with id "navbar"
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('navbar').innerHTML = data);
+  </script>
 </body>
 </html>
