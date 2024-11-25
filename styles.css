@@ -74,6 +74,6 @@ body::before {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #99a2a2 /* Grey as background */
+  background-color: #99a2a2; /* Grey as background */
   z-index: -1;
 }
