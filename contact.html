@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Projects</title>
+</head>
+<body>
+  <!-- Empty div where navbar will be inserted -->
+  <div id="navbar"></div>
+
+  <h1>contact</h1>
+  <p>Explore my STEM projects here!</p>
+
+  <script>
+    // Fetch navbar.html and insert it into the div with id "navbar"
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('navbar').innerHTML = data);
+  </script>
+</body>
+</html>
 
