@@ -77,29 +77,28 @@ strong {
   color: #ff5722; /* Adds an orange accent color */
 }
 
-/* Centering Container */
-.button-container {
-  display: flex; /* Enable flexbox */
-  justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center */
-  height: 100vh; /* Full viewport height */
+/* Centering the YouTube button */
+.youtube-button-container {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  position: fixed;
+  top: 10px; /* Adjust the top position as needed */
+  width: 100%; /* Full width to align it at the top */
+  z-index: 1001; /* Ensure it stays above the navbar */
 }
 
-/* Link Styles */
-a {
-  display: inline-block;
-  text-decoration: none;
-  background-color: #cb1b1b; /* Red background */
+.youtube-button-container a {
+  background-color: #cb1b1b; /* Button background color */
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   font-weight: bold;
   text-align: center;
-  margin: 15px auto;
+  text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
-a:hover {
+.youtube-button-container a:hover {
   background-color: #1769aa; /* Darker blue on hover */
 }
 
