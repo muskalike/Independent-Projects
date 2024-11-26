@@ -16,12 +16,26 @@
 
   <p>Welcome to my website!</p>
 
-  <script>
-    // Fetch navbar.html and insert it into the div with id "navbar"
-    fetch('navbar.html')
-      .then(response => response.text())
-      .then(data => document.getElementById('navbar').innerHTML = data);
-  </script>
+<script>
+  // Fetch navbar.html and insert it into the div with id "navbar"
+  fetch('navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      // Insert the navbar into the div
+      document.getElementById('navbar').innerHTML = data;
+
+      // Dynamically add the active class to the current page link
+      const currentPage = window.location.pathname.split("/").pop(); // Get the current page name
+      const links = document.querySelectorAll('#navbar a'); // Select all links in the navbar
+
+      links.forEach(link => {
+        if (link.href.includes(currentPage)) {
+          link.classList.add('active'); // Add the active class to the matching link
+        }
+      });
+    });
+</script>
+
    
     <nav>
   <ul class="navbar">
