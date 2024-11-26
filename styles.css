@@ -46,6 +46,11 @@ nav {
   color: #ddd; /* Optional: Lightens text color on hover */
 }
 
+.navbar a.active {
+  font-weight: bold;
+  color: #ff6347;
+}
+
 /* Header Styles */
 h1 {
   text-align: center;
