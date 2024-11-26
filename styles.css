@@ -52,6 +52,10 @@ nav {
   color: #ff6347;
 }
 
+.main-content {
+    margin-top: 50px;
+}
+
 /* Header Styles */
 h1 {
   text-align: center;
@@ -83,25 +87,21 @@ strong {
   color: #ff5722; /* Adds an orange accent color */
 }
 
-.button-container {
-  display: flex;
-  justify-content: center; /* Centers the button horizontally */
-  margin: 20px 0; /* Adds vertical spacing */
+
+.youtube-button {
+    display: inline-block;
+    background-color: #ff0000;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
-.button-container a {
-  text-decoration: none;
-  background-color: #cb1b1b; /* Red background */
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-
-.button-container a:hover {
-  background-color: #1769aa; /* Darker blue on hover */
+.youtube-button:hover {
+    background-color: #cc0000;
 }
 
 /* Image Styles */
