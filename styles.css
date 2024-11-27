@@ -97,7 +97,8 @@ a:link, a:visited {
 }
 
 a:hover, a:active {
-  background-color: red;
+  background-color: grey;
+  color: white;
 }
 
 /* Image Styles */
