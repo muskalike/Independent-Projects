@@ -89,8 +89,9 @@ strong {
 
 button {
   padding: 10px 20px; /* Adds padding to the buttons */
-  background-color: #ff0000; /* Button background color */
+  background-color: #f25555; /* Button background color */
   border-radius: 5px; /* Optional: Rounded corners */
+  
 }
 
 .youtube-button {
