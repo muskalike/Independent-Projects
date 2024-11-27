@@ -87,6 +87,11 @@ strong {
   color: #ff5722; /* Adds an orange accent color */
 }
 
+button {
+  padding: 10px 20px; /* Adds padding to the buttons */
+  background-color: #ff0000; /* Button background color */
+  border-radius: 5px; /* Optional: Rounded corners */
+}
 
 .youtube-button {
     display: inline-block;
