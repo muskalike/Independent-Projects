@@ -109,6 +109,7 @@ button {
 
 .youtube-button:hover {
     background-color: #cc0000;
+  cursor: pointer; /* Changes cursor to a pointer */
 }
 
 /* Image Styles */
