@@ -87,29 +87,17 @@ strong {
   color: #ff5722; /* Adds an orange accent color */
 }
 
-button {
-  padding: 10px 20px; /* Adds padding to the buttons */
-  background-color: #f25555; /* Button background color */
-  border-radius: 5px; /* Optional: Rounded corners */
-  
+a:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.youtube-button {
-    display: inline-block;
-    background-color: #ff0000;
-    color: blue;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-.youtube-button:hover {
-    background-color: #cc0000;
-  cursor: pointer; /* Changes cursor to a pointer */
+a:hover, a:active {
+  background-color: red;
 }
 
 /* Image Styles */
