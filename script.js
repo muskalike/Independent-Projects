@@ -99,8 +99,8 @@ function gameLoop() {
     if (ballX + ballRadius > canvasWidth) {
         ballX = canvasWidth / 2;
         ballY = canvasHeight / 2;
-        ballSpeedX = 3;
-        ballSpeedY = 3;
+        ballSpeedX = 2;
+        ballSpeedY = 2;
         score = 0; // Reset the score
     }
 
@@ -108,6 +108,42 @@ function gameLoop() {
     ctx.font = "20px Arial";
     ctx.fillStyle = "white";
     ctx.fillText(`Score: ${score}`, canvasWidth / 2 - 40, 30);
+
+    // Track touch position
+let touchStartY = 0;
+let touchMoveY = 0;
+
+canvas.addEventListener("touchstart", function(event) {
+    // Prevent default behavior (such as scrolling)
+    event.preventDefault();
+
+    // Get the touch start position
+    touchStartY = event.touches[0].clientY;
+}, false);
+
+canvas.addEventListener("touchmove", function(event) {
+    event.preventDefault();
+
+    // Get the current touch position
+    touchMoveY = event.touches[0].clientY;
+
+    // Move the paddle based on the touch movement
+    let deltaY = touchMoveY - touchStartY;
+
+    // Update the paddle's position based on touch
+    leftPaddle.y += deltaY;
+
+    // Ensure the paddle stays within bounds of the canvas
+    if (leftPaddle.y < 0) {
+        leftPaddle.y = 0;
+    } else if (leftPaddle.y + leftPaddle.height > canvas.height) {
+        leftPaddle.y = canvas.height - leftPaddle.height;
+    }
+
+    // Update touchStartY for the next move event
+    touchStartY = touchMoveY;
+}, false);
+
 
     requestAnimationFrame(gameLoop); // Keep the game running
 }
