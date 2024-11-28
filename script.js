@@ -9,8 +9,8 @@ const canvasHeight = canvas.height;
 let ballX = canvasWidth / 2;
 let ballY = canvasHeight / 2;
 let ballRadius = 8;
-let ballSpeedX = 1.5;
-let ballSpeedY = 1.5;
+let ballSpeedX = 2;
+let ballSpeedY = 2;
 
 // Player paddle properties
 const paddleWidth = 10;
