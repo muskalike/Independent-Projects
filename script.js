@@ -17,12 +17,34 @@ const paddleWidth = 10;
 const paddleHeight = 80;
 let playerY = (canvasHeight - paddleHeight) / 2;
 
+// Movement variables for keyboard control
+let upPressed = false;
+let downPressed = false;
+
 // Game score
 let score = 0;
 
-// Detect touch events for dragging the paddle
+// Touch input variables
 let isDragging = false;
 
+// Keyboard controls for the paddle
+document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowUp") {
+        upPressed = true;
+    } else if (e.key === "ArrowDown") {
+        downPressed = true;
+    }
+});
+
+document.addEventListener("keyup", (e) => {
+    if (e.key === "ArrowUp") {
+        upPressed = false;
+    } else if (e.key === "ArrowDown") {
+        downPressed = false;
+    }
+});
+
+// Touch controls for dragging the paddle
 canvas.addEventListener("touchstart", (e) => {
     const touch = e.touches[0];
     const touchY = touch.clientY - canvas.getBoundingClientRect().top;
@@ -58,6 +80,16 @@ canvas.addEventListener("touchend", () => {
 function gameLoop() {
     // Clear the canvas
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    // Move paddle based on keyboard input
+    if (upPressed) {
+        playerY -= 5; // Move up
+        if (playerY < 0) playerY = 0; // Prevent moving above canvas
+    }
+    if (downPressed) {
+        playerY += 5; // Move down
+        if (playerY > canvasHeight - paddleHeight) playerY = canvasHeight - paddleHeight; // Prevent moving below canvas
+    }
 
     // Draw left wall (always active)
     ctx.fillStyle = "white";
