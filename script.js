@@ -1,59 +1,52 @@
-// script.js
 const canvas = document.getElementById("pongCanvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = 800;
-canvas.height = 400;
+// Canvas size
+const canvasWidth = canvas.width;
+const canvasHeight = canvas.height;
 
-// Paddle settings
+// Ball properties
+let ballX = canvasWidth / 2;
+let ballY = canvasHeight / 2;
+let ballRadius = 8;
+let ballSpeedX = 3; // Ball horizontal speed
+let ballSpeedY = 3; // Ball vertical speed
+
+// Player paddle properties
 const paddleWidth = 10;
 const paddleHeight = 80;
-const paddleSpeed = 8;
+let playerY = (canvasHeight - paddleHeight) / 2;
+const paddleSpeed = 6;
 
-// Ball settings
-let ballX = canvas.width / 2;
-let ballY = canvas.height / 2;
-let ballRadius = 8;
-let ballSpeedX = 2;
-let ballSpeedY = 2;
+// Counter
+let score = 0;
 
-// Player paddles
-let player1Y = (canvas.height - paddleHeight) / 2;
-let player2Y = (canvas.height - paddleHeight) / 2;
-
-// Key press states
+// Controls
 let upPressed = false;
 let downPressed = false;
-let wPressed = false;
-let sPressed = false;
 
-// Event listeners for keyboard input
-document.addEventListener("keydown", keyDownHandler);
-document.addEventListener("keyup", keyUpHandler);
-
-function keyDownHandler(e) {
+// Event listeners for paddle control
+document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowUp") upPressed = true;
     if (e.key === "ArrowDown") downPressed = true;
-    if (e.key === "w") wPressed = true;
-    if (e.key === "s") sPressed = true;
-}
-
-function keyUpHandler(e) {
+});
+document.addEventListener("keyup", (e) => {
     if (e.key === "ArrowUp") upPressed = false;
     if (e.key === "ArrowDown") downPressed = false;
-    if (e.key === "w") wPressed = false;
-    if (e.key === "s") sPressed = false;
-}
+});
 
 // Game loop
-function draw() {
+function gameLoop() {
     // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    // Draw paddles
+    // Draw wall
     ctx.fillStyle = "white";
-    ctx.fillRect(10, player1Y, paddleWidth, paddleHeight);
-    ctx.fillRect(canvas.width - 20, player2Y, paddleWidth, paddleHeight);
+    ctx.fillRect(0, 0, 10, canvasHeight); // Wall on the left side
+
+    // Draw player paddle
+    ctx.fillStyle = "white";
+    ctx.fillRect(canvasWidth - paddleWidth, playerY, paddleWidth, paddleHeight);
 
     // Draw ball
     ctx.beginPath();
@@ -67,41 +60,36 @@ function draw() {
     ballY += ballSpeedY;
 
     // Ball collision with top and bottom walls
-    if (ballY + ballRadius > canvas.height || ballY - ballRadius < 0) {
+    if (ballY + ballRadius > canvasHeight || ballY - ballRadius < 0) {
         ballSpeedY = -ballSpeedY;
     }
 
-    // Ball collision with paddles
+    // Ball collision with the wall
+    if (ballX - ballRadius < 10) {
+        ballSpeedX = -ballSpeedX;
+    }
+
+    // Ball collision with the player paddle
     if (
-        ballX - ballRadius < 20 && 
-        ballY > player1Y && 
-        ballY < player1Y + paddleHeight
+        ballX + ballRadius > canvasWidth - paddleWidth &&
+        ballY > playerY &&
+        ballY < playerY + paddleHeight
     ) {
         ballSpeedX = -ballSpeedX;
-    }
-    if (
-        ballX + ballRadius > canvas.width - 20 &&
-        ballY > player2Y &&
-        ballY < player2Y + paddleHeight
-    ) {
-        ballSpeedX = -ballSpeedX;
+        score++; // Increment the score
     }
 
-    // Ball reset if it goes off-screen
-    if (ballX - ballRadius < 0 || ballX + ballRadius > canvas.width) {
-        ballX = canvas.width / 2;
-        ballY = canvas.height / 2;
-        ballSpeedX = -ballSpeedX;
-    }
+    // Player paddle movement
+    if (upPressed && playerY > 0) playerY -= paddleSpeed;
+    if (downPressed && playerY < canvasHeight - paddleHeight) playerY += paddleSpeed;
 
-    // Move player paddles
-    if (upPressed && player2Y > 0) player2Y -= paddleSpeed;
-    if (downPressed && player2Y < canvas.height - paddleHeight) player2Y += paddleSpeed;
-    if (wPressed && player1Y > 0) player1Y -= paddleSpeed;
-    if (sPressed && player1Y < canvas.height - paddleHeight) player1Y += paddleSpeed;
+    // Draw score
+    ctx.font = "20px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText(`Score: ${score}`, canvasWidth / 2 - 40, 30);
 
-    requestAnimationFrame(draw);
+    requestAnimationFrame(gameLoop); // Loop the game
 }
 
 // Start the game loop
-draw();
+gameLoop();
