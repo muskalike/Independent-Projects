@@ -1,7 +1,7 @@
 const canvas = document.getElementById("pongCanvas");
 const ctx = canvas.getContext("2d");
 
-// Canvas size
+// Canvas dimensions
 const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
 
@@ -17,22 +17,19 @@ const paddleWidth = 10;
 const paddleHeight = 80;
 let playerY = (canvasHeight - paddleHeight) / 2;
 
-// Counter
+// Game score
 let score = 0;
 
-// Collision cooldown
-let ballHitPaddle = false; // Tracks if the ball just hit the paddle
-
-// Detect touch events for paddle dragging
+// Detect touch events for dragging the paddle
 let isDragging = false;
 
 canvas.addEventListener("touchstart", (e) => {
     const touch = e.touches[0];
     const touchY = touch.clientY - canvas.getBoundingClientRect().top;
 
-    // Check if touch starts near the paddle
+    // Check if touch starts on the paddle
     if (
-        touch.clientX > canvasWidth - paddleWidth &&
+        touch.clientX > canvasWidth - paddleWidth && // Right side of the canvas
         touchY >= playerY &&
         touchY <= playerY + paddleHeight
     ) {
@@ -45,26 +42,26 @@ canvas.addEventListener("touchmove", (e) => {
         const touch = e.touches[0];
         const touchY = touch.clientY - canvas.getBoundingClientRect().top;
 
-        // Update the paddle's Y position, keeping it within bounds
+        // Update paddle position, keeping it within canvas bounds
         playerY = touchY - paddleHeight / 2;
-        if (playerY < 0) playerY = 0;
-        if (playerY > canvasHeight - paddleHeight) playerY = canvasHeight - paddleHeight;
+        if (playerY < 0) playerY = 0; // Prevent moving above canvas
+        if (playerY > canvasHeight - paddleHeight) playerY = canvasHeight - paddleHeight; // Prevent moving below canvas
     }
-    e.preventDefault(); // Prevent scrolling during touch
+    e.preventDefault(); // Prevent default touch scrolling
 });
 
 canvas.addEventListener("touchend", () => {
-    isDragging = false;
+    isDragging = false; // Stop dragging
 });
 
 // Game loop
 function gameLoop() {
-    // Clear canvas
+    // Clear the canvas
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    // Draw wall
+    // Draw left wall (always active)
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, 10, canvasHeight); // Wall on the left side
+    ctx.fillRect(0, 0, 10, canvasHeight);
 
     // Draw player paddle
     ctx.fillStyle = "white";
@@ -83,27 +80,31 @@ function gameLoop() {
 
     // Ball collision with top and bottom walls
     if (ballY + ballRadius > canvasHeight || ballY - ballRadius < 0) {
-        ballSpeedY = -ballSpeedY;
+        ballSpeedY = -ballSpeedY; // Reverse direction
     }
 
-    // Ball collision with the wall
+    // Ball collision with the left wall
     if (ballX - ballRadius < 10) {
-        ballSpeedX = -ballSpeedX;
+        ballSpeedX = -ballSpeedX; // Reverse direction
     }
 
     // Ball collision with the player paddle
     if (
-        ballX + ballRadius > canvasWidth - paddleWidth &&
+        ballX + ballRadius > canvasWidth - paddleWidth && // Near paddle
         ballY > playerY &&
         ballY < playerY + paddleHeight
     ) {
-        if (!ballHitPaddle) {
-            ballSpeedX = -ballSpeedX;
-            score++; // Increment the score
-            ballHitPaddle = true; // Set collision cooldown
-        }
-    } else {
-        ballHitPaddle = false; // Reset cooldown if the ball is away from the paddle
+        ballSpeedX = -ballSpeedX; // Reverse direction
+        score++; // Increment score when the ball hits the paddle
+    }
+
+    // Reset ball position if it goes past the paddle
+    if (ballX + ballRadius > canvasWidth) {
+        ballX = canvasWidth / 2;
+        ballY = canvasHeight / 2;
+        ballSpeedX = 3;
+        ballSpeedY = 3;
+        score = 0; // Reset the score
     }
 
     // Draw score
@@ -111,7 +112,7 @@ function gameLoop() {
     ctx.fillStyle = "white";
     ctx.fillText(`Score: ${score}`, canvasWidth / 2 - 40, 30);
 
-    requestAnimationFrame(gameLoop); // Loop the game
+    requestAnimationFrame(gameLoop); // Keep the game running
 }
 
 // Start the game loop
