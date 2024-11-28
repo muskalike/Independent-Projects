@@ -104,16 +104,26 @@ strong {
     background-color: darkred; /* Darker red on hover */
 }
 
-/* styles.css */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
     background-color: black;
     color: white;
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Push it to occupy the remaining space */
 }
 
 #pongCanvas {
@@ -121,6 +131,7 @@ body {
     border: 2px solid white;
     display: block;
 }
+
 
 
 
