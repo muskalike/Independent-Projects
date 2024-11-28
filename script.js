@@ -24,9 +24,6 @@ let downPressed = false;
 // Game score
 let score = 0;
 
-// Touch input variables
-let isDragging = false;
-
 // Keyboard controls for the paddle
 document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowUp") {
@@ -42,38 +39,6 @@ document.addEventListener("keyup", (e) => {
     } else if (e.key === "ArrowDown") {
         downPressed = false;
     }
-});
-
-// Touch controls for dragging the paddle
-canvas.addEventListener("touchstart", (e) => {
-    const touch = e.touches[0];
-    const touchY = touch.clientY - canvas.getBoundingClientRect().top;
-
-    // Check if touch starts on the paddle
-    if (
-        touch.clientX > canvasWidth - paddleWidth && // Right side of the canvas
-        touchY >= playerY &&
-        touchY <= playerY + paddleHeight
-    ) {
-        isDragging = true;
-    }
-});
-
-canvas.addEventListener("touchmove", (e) => {
-    if (isDragging) {
-        const touch = e.touches[0];
-        const touchY = touch.clientY - canvas.getBoundingClientRect().top;
-
-        // Update paddle position, keeping it within canvas bounds
-        playerY = touchY - paddleHeight / 2;
-        if (playerY < 0) playerY = 0; // Prevent moving above canvas
-        if (playerY > canvasHeight - paddleHeight) playerY = canvasHeight - paddleHeight; // Prevent moving below canvas
-    }
-    e.preventDefault(); // Prevent default touch scrolling
-});
-
-canvas.addEventListener("touchend", () => {
-    isDragging = false; // Stop dragging
 });
 
 // Game loop
@@ -149,3 +114,4 @@ function gameLoop() {
 
 // Start the game loop
 gameLoop();
+
