@@ -9,33 +9,52 @@ const canvasHeight = canvas.height;
 let ballX = canvasWidth / 2;
 let ballY = canvasHeight / 2;
 let ballRadius = 8;
-let ballSpeedX = 3; // Ball horizontal speed
-let ballSpeedY = 3; // Ball vertical speed
+let ballSpeedX = 3;
+let ballSpeedY = 3;
 
 // Player paddle properties
 const paddleWidth = 10;
 const paddleHeight = 80;
 let playerY = (canvasHeight - paddleHeight) / 2;
-const paddleSpeed = 6;
 
 // Counter
 let score = 0;
 
-// Controls
-let upPressed = false;
-let downPressed = false;
-
 // Collision cooldown
 let ballHitPaddle = false; // Tracks if the ball just hit the paddle
 
-// Event listeners for paddle control
-document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowUp") upPressed = true;
-    if (e.key === "ArrowDown") downPressed = true;
+// Detect touch events for paddle dragging
+let isDragging = false;
+
+canvas.addEventListener("touchstart", (e) => {
+    const touch = e.touches[0];
+    const touchY = touch.clientY - canvas.getBoundingClientRect().top;
+
+    // Check if touch starts near the paddle
+    if (
+        touch.clientX > canvasWidth - paddleWidth &&
+        touchY >= playerY &&
+        touchY <= playerY + paddleHeight
+    ) {
+        isDragging = true;
+    }
 });
-document.addEventListener("keyup", (e) => {
-    if (e.key === "ArrowUp") upPressed = false;
-    if (e.key === "ArrowDown") downPressed = false;
+
+canvas.addEventListener("touchmove", (e) => {
+    if (isDragging) {
+        const touch = e.touches[0];
+        const touchY = touch.clientY - canvas.getBoundingClientRect().top;
+
+        // Update the paddle's Y position, keeping it within bounds
+        playerY = touchY - paddleHeight / 2;
+        if (playerY < 0) playerY = 0;
+        if (playerY > canvasHeight - paddleHeight) playerY = canvasHeight - paddleHeight;
+    }
+    e.preventDefault(); // Prevent scrolling during touch
+});
+
+canvas.addEventListener("touchend", () => {
+    isDragging = false;
 });
 
 // Game loop
@@ -86,10 +105,6 @@ function gameLoop() {
     } else {
         ballHitPaddle = false; // Reset cooldown if the ball is away from the paddle
     }
-
-    // Player paddle movement
-    if (upPressed && playerY > 0) playerY -= paddleSpeed;
-    if (downPressed && playerY < canvasHeight - paddleHeight) playerY += paddleSpeed;
 
     // Draw score
     ctx.font = "20px Arial";
