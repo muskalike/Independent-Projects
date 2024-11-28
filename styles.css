@@ -104,6 +104,25 @@ strong {
     background-color: darkred; /* Darker red on hover */
 }
 
+/* styles.css */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+#pongCanvas {
+    background-color: #222;
+    border: 2px solid white;
+    display: block;
+}
+
+
 
 /* Image Styles */
 img {
