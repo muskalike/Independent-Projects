@@ -130,9 +130,11 @@ header {
     background-color: #222;
     border: 2px solid white;
     display: block;
+    width: 90%; /* Make the canvas responsive */
+    max-width: 600px; /* Limit the maximum width */
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+    margin: auto;
 }
-
-
 
 
 /* Image Styles */
