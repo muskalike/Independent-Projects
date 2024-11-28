@@ -25,6 +25,9 @@ let score = 0;
 let upPressed = false;
 let downPressed = false;
 
+// Collision cooldown
+let ballHitPaddle = false; // Tracks if the ball just hit the paddle
+
 // Event listeners for paddle control
 document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowUp") upPressed = true;
@@ -75,8 +78,13 @@ function gameLoop() {
         ballY > playerY &&
         ballY < playerY + paddleHeight
     ) {
-        ballSpeedX = -ballSpeedX;
-        score++; // Increment the score
+        if (!ballHitPaddle) {
+            ballSpeedX = -ballSpeedX;
+            score++; // Increment the score
+            ballHitPaddle = true; // Set collision cooldown
+        }
+    } else {
+        ballHitPaddle = false; // Reset cooldown if the ball is away from the paddle
     }
 
     // Player paddle movement
