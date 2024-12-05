@@ -153,6 +153,12 @@ img {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
 }
 
+.footercredit {
+  float: right;
+  width: 40%;
+  position: relative;
+}
+
 /* Additional Styling */
 body::before {
   content: "";
